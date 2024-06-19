@@ -31,7 +31,60 @@
 در هر تکرار، به دستگاه‌های نهایی اجازه می‌دهد تا مدل‌های محلی خود را در سرور با یکدیگر تبادل کنند. برای حفظ عدالت، از یک استراتژی چرخشی استفاده می‌شود تا هر دو دستگاه نهایی بتوانند عملیات تعویض مدل را انجام دهند. علاوه بر این، انتظار می‌رود که این عملیات تعویض مدل بین دستگاه‌های نهایی، به هر مدل دید گسترده‌تری از کل مجموعه داده‌ها بدهد و در نتیجه، انحراف وزن‌ها را کاهش دهد.
 
 \subsection{FedAvgCode}
+تست در الگوریتم
+\ref{algo_fedswap}
 تست
+
+
+\begin{LTR}
+\SetAlgoNlRelativeSize{-1}
+\begin{algorithm}[t]
+	\begin{RTL}
+	\caption{%
+		تعویض فدرال
+		\lr{(FedSwap)}
+	}
+	\label{algo_fedswap}
+	\end{RTL}
+	
+	\begin{latin}
+	Initialize all clients model with weight $w_0$\;
+	\For{$t = 1, 2, \ldots, T$}{
+		\For{each client $c = 1, 2, \ldots, C$
+			\textbf{in parallel}}{
+			$w_t^c = w_{t-1}^c - \eta \nabla F(w_{t-1}^c)$\;
+		}
+		\If{$t|k_1 = 0$ \quad and \quad $t|k_1k_2 \neq 0$}{
+			\For{each client $c = 1, 2, \ldots, C$}{
+				$w_t^c \gets \texttt{FedSwap}(c, \{w_t^c\}_{c \in C})$\;
+			}
+		}
+		\If{$t|k_1k_2 = 0$}{
+			$w_t \gets \texttt{FedAvg}(\{w_t^c\}_{c \in C})$\;
+			\For{each client $c = 1, 2, \ldots, C$
+				\textbf{in parallel}}{
+				$w_t^c \gets w_t$\;
+			}
+		}
+	}
+	\SetKwFunction{FedSwap}{FedSwap}
+	\SetKwFunction{FedAvg}{FedAvg}
+	\SetKwProg{Fn}{Function}{:}{end}
+	\Fn{\FedSwap{$c, \{w_t^c\}_{c \in C}$}}{
+		$r$ \space represent a random client in \space $C$\;
+		$w_t \gets w_t^r$\;
+		$w_t^r \gets w_t^c$\;
+		\KwRet $w_t$\;
+	}
+	\Fn{\FedAvg{$\{w_t^c\}_{c \in C}$}}{
+		$w_t \gets \sum_{c=1}^C \frac{n_c}{n} w_t^c$\;
+		\KwRet $w_t$\;
+	}
+	\end{latin}
+\end{algorithm}
+\end{LTR}
+
+
 
 \subsection{FedSwapCode}
 تست
