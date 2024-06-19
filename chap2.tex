@@ -324,6 +324,52 @@ $n_k$
 $u_k=E \frac{n_k}{B}$
 نمایش داده می‌شود
 \cite{mcmahan2017communication}.
+شبه کد کامل این روش در الگوریتم
+\ref{algo_FedAvg}
+ارائه شده است.
+
+
+\begin{LTR}
+\SetAlgoNlRelativeSize{-1}
+\begin{algorithm}[t]
+	\begin{RTL}
+		\caption{%
+میانگین‌گیری فدرال
+			\lr{(FedAvg)}
+			\cite{mcmahan2017communication}
+		}
+		\label{algo_FedAvg}
+	\end{RTL}
+	
+	\begin{latin}
+		initialize $w_0$\;
+		\For{each round $t = 1, 2, \ldots$}{
+			$m \gets \max(C \cdot K, 1)$\;
+			$S_t \gets$ (random set of $m$ clients)\;
+			\For{each client $k \in S_t$
+				\textbf{in parallel}}{
+				$w_{t+1}^k \gets \texttt{ClientUpdate}(k, w_t)$\;
+			}
+			$w_{t+1} \leftarrow \sum_{k=1}^K \frac{n_k}{n} w_{t+1}^k$\;
+		}
+		\SetKwFunction{ClientUpdate}{ClientUpdate}
+		\SetKwProg{Fn}{Function}{:
+		\quad // {\mdseries \textit{Run on client} $k$}
+		}{end}
+		\Fn{\ClientUpdate{$k, w$}}{
+			$\mathcal{B} \leftarrow$ (split $\mathcal{P}_k$ into batches of size $B$)\;
+			\For{each local epoch \space $i$ \space from $1$ to $E$}{
+				\For{batch $b \in \mathcal{B}$}{
+					$w \gets w - \eta \nabla \ell(w$%
+					\texttt{\char`\~}%
+					$b)$\;
+				}
+			}
+			\KwRet $w$ to server\;
+		}
+	\end{latin}
+\end{algorithm}
+\end{LTR}
 
 
 
