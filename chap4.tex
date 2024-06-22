@@ -20,22 +20,109 @@
 	روش تعویض فدرال%
 \LTRfootnote{Federated Swapping}
 }
+
 در این روش، یک عملیات جدید به نام تعویض فدرال یا
 \lr{FedSwap}
 پیشنهاد شده است که جایگزین برخی از دوره‌های
 \lr{FedAvg}
-در سرور می‌شود. اصل اساسی
+در سرور می‌شود. این عملیات با هدف بهبود فرآیند یادگیری فدرال و کاهش تاثیرات منفی داده‌های
+\lr{non-IID}
+طراحی شده است. اصل اساسی
 \lr{FedSwap}
 این است که به جای اجرای
 \lr{FedAvg}
-در هر تکرار، به دستگاه‌های نهایی اجازه می‌دهد تا مدل‌های محلی خود را در سرور با یکدیگر تبادل کنند. برای حفظ عدالت، از یک استراتژی چرخشی استفاده می‌شود تا هر دو دستگاه نهایی بتوانند عملیات تعویض مدل را انجام دهند. علاوه بر این، انتظار می‌رود که این عملیات تعویض مدل بین دستگاه‌های نهایی، به هر مدل دید گسترده‌تری از کل مجموعه داده‌ها بدهد و در نتیجه، انحراف وزن‌ها را کاهش دهد
+در هر تکرار، به دستگاه‌های نهایی اجازه می‌دهد تا مدل‌های محلی خود را در سرور با یکدیگر تبادل کنند
+\cite{chiu2020semisupervised}.
+
+برای حفظ عدالت در این فرآیند، از یک استراتژی چرخشی استفاده می‌شود. در این استراتژی، به طور منظم و به ترتیب، دو دستگاه نهایی به یکدیگر اجازه می‌دهند که مدل‌های خود را تبادل کنند. این کار باعث می‌شود که همه دستگاه‌های نهایی به طور مساوی در فرآیند تبادل مدل‌ها شرکت کنند و هیچ دستگاهی از مزایای این تبادل محروم نماند.
+
+علاوه بر این، انتظار می‌رود که این عملیات تعویض مدل بین دستگاه‌های نهایی، به هر مدل دید گسترده‌تری از کل مجموعه داده‌ها بدهد. به عبارت دیگر، هر مدل محلی با تبادل مدل با دیگر دستگاه‌ها، می‌تواند اطلاعات بیشتری از داده‌های مختلف دریافت کند. این امر به کاهش انحراف وزن‌ها کمک می‌کند، زیرا مدل‌ها با داده‌های متنوع‌تری آموزش می‌بینند و به تدریج به یک مدل جامع‌تر و دقیق‌تر نزدیک می‌شوند.
+
+به طور خلاصه، عملیات
+\lr{FedSwap}
+با تبادل مدل‌های محلی بین دستگاه‌های نهایی، نه تنها به بهبود دقت و عملکرد مدل‌ها کمک می‌کند، بلکه مشکلات ناشی از داده‌های
+\lr{non-IID}
+را نیز کاهش می‌دهد. این روش به عنوان یک رویکرد موثر در یادگیری فدرال می‌تواند باعث بهبود قابل توجهی در نتایج نهایی شود
 \cite{chiu2020semisupervised}.
 
 
-\subsection{FedAvgCode}
-تست در جدول
+جزئیات عملیات
+\lr{FedSwap}
+در الگوریتم
+\ref{algo_FedSwap}
+ارائه شده است.
+همچنین در جدول
 \ref{tabel_FedSwapNotations}
-تست
+نمادهای مختص این الگوریتم به نمایش در آمده است.
+در این الگوریتم،
+$w^k_t$
+به عنوان وزن مدل در دستگاه نهایی
+$k$
+پس از گام
+$t$
+تنظیم می‌شود. در ابتدا، دستگاه‌های نهایی چندین به‌روزرسانی محلی انجام می‌دهند تا مدل‌های خود را بهبود بخشند. پس از هر
+$h_1$
+به‌روزرسانی محلی، سرور وارد عمل شده و عملیات
+\lr{FedSwap}
+را اجرا می‌کند. در این مرحله، مدل‌های محلی بین دستگاه‌های نهایی تبادل می‌شوند تا هر دستگاه بتواند از مدل‌های متنوع‌تری برای آموزش استفاده کند.
+
+این تبادل مدل‌ها به کاهش تنوع داده‌ها بین دستگاه‌های مختلف کمک می‌کند و باعث می‌شود که مدل‌ها با داده‌های مختلفی آموزش ببینند. پس از انجام
+$h_2$
+عملیات
+\lr{FedSwap}%
+، سرور وارد عمل شده و عملیات
+\lr{FedAvg}
+را اجرا می‌کند. در این مرحله، سرور مدل‌های محلی را تجمیع می‌کند تا یک مدل مشترک ایجاد شود که از داده‌های تمام دستگاه‌ها بهره‌مند است.
+
+
+\begin{LTR}
+	\SetAlgoNlRelativeSize{-1}
+	\begin{algorithm}[t]
+		\begin{RTL}
+			\caption{%
+				تعویض فدرال
+				\lr{(FedSwap)}
+				\cite{chiu2020semisupervised}
+			}
+			\label{algo_FedSwap}
+		\end{RTL}
+		
+		\begin{latin}
+			Initialize all clients model with weight $w_0$\;
+			\For{$t = 1, 2, \ldots, T$}{
+				\For{each client $k = 1, 2, \ldots, K$
+					\textbf{in parallel}}{
+					$w_t^k = w_{t-1}^k - \eta \nabla F(w_{t-1}^k)$\;
+				}
+				\If{$t|h_1 = 0$ \quad and \quad $t|h_1h_2 \neq 0$}{
+					\For{each client $k = 1, 2, \ldots, K$}{
+						$w_t^k \gets \texttt{FedSwap}(k, \{w_t^k\}_{k \in K})$\;
+					}
+				}
+				\If{$t|h_1h_2 = 0$}{
+					$w_t \gets \texttt{FedAvg}(\{w_t^k\}_{k \in K})$\;
+					\For{each client $k = 1, 2, \ldots, K$
+						\textbf{in parallel}}{
+						$w_t^k \gets w_t$\;
+					}
+				}
+			}
+			\SetKwFunction{FedSwap}{FedSwap}
+			\SetKwFunction{FedAvg}{FedAvg}
+			\SetKwProg{Fn}{Function}{:}{end}
+			\Fn{\FedSwap{$k, \{w_t^k\}_{k \in K}$}}{
+				$r$ \space represent a random client in \space $K$\;
+				$w_t \gets w_t^r$\;
+				$w_t^r \gets w_t^k$\;
+				\KwRet $w_t$\;
+			}
+			\Fn{\FedAvg{$\{w_t^k\}_{k \in K}$}}{
+				$w_t \gets \sum_{k=1}^K \frac{n_k}{n} w_t^k$\;
+				\KwRet $w_t$\;
+			}
+		\end{latin}
+	\end{algorithm}
+\end{LTR}
 
 
 \begin{table}[h]
@@ -49,11 +136,11 @@
 		متغیر & توضیحات \\
 		\hline
 		$h_1$ & تعداد گام‌ها بین هر
-			\lr{FedSwap} \\
+		\lr{FedSwap} \\
 		$h_2$ & تعداد
-			\lr{FedSwap}
-				بین هر
-			\lr{FedAvg} \\
+		\lr{FedSwap}
+		بین هر
+		\lr{FedAvg} \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -61,61 +148,11 @@
 
 
 
-تست در الگوریتم
-\ref{algo_FedSwap}
+
+
+
+\subsection{FedAvgCode}
 تست
-
-
-\begin{LTR}
-\SetAlgoNlRelativeSize{-1}
-\begin{algorithm}[t]
-	\begin{RTL}
-	\caption{%
-		تعویض فدرال
-		\lr{(FedSwap)}
-		\cite{chiu2020semisupervised}
-	}
-	\label{algo_FedSwap}
-	\end{RTL}
-	
-	\begin{latin}
-	Initialize all clients model with weight $w_0$\;
-	\For{$t = 1, 2, \ldots, T$}{
-		\For{each client $k = 1, 2, \ldots, K$
-			\textbf{in parallel}}{
-			$w_t^k = w_{t-1}^k - \eta \nabla F(w_{t-1}^k)$\;
-		}
-		\If{$t|h_1 = 0$ \quad and \quad $t|h_1h_2 \neq 0$}{
-			\For{each client $k = 1, 2, \ldots, K$}{
-				$w_t^k \gets \texttt{FedSwap}(k, \{w_t^k\}_{k \in K})$\;
-			}
-		}
-		\If{$t|h_1h_2 = 0$}{
-			$w_t \gets \texttt{FedAvg}(\{w_t^k\}_{k \in K})$\;
-			\For{each client $k = 1, 2, \ldots, K$
-				\textbf{in parallel}}{
-				$w_t^k \gets w_t$\;
-			}
-		}
-	}
-	\SetKwFunction{FedSwap}{FedSwap}
-	\SetKwFunction{FedAvg}{FedAvg}
-	\SetKwProg{Fn}{Function}{:}{end}
-	\Fn{\FedSwap{$k, \{w_t^k\}_{k \in K}$}}{
-		$r$ \space represent a random client in \space $K$\;
-		$w_t \gets w_t^r$\;
-		$w_t^r \gets w_t^k$\;
-		\KwRet $w_t$\;
-	}
-	\Fn{\FedAvg{$\{w_t^k\}_{k \in K}$}}{
-		$w_t \gets \sum_{k=1}^K \frac{n_k}{n} w_t^k$\;
-		\KwRet $w_t$\;
-	}
-	\end{latin}
-\end{algorithm}
-\end{LTR}
-
-
 
 \subsection{FedSwapCode}
 تست
