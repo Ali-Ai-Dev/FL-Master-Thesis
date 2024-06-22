@@ -34,48 +34,28 @@
 
 \subsection{FedAvgCode}
 تست در جدول
-\ref{tabel_notation}
+\ref{tabel_FedSwapNotations}
 تست
 
 
 \begin{table}[h]
-\centering
-%\begin{threeparttable}
-	\caption{نشانه‌گذاری‌ها}
-	\label{tabel_notation}
+	\centering
+	\caption{نمادهای مختص الگوریتم
+		\lr{FedSwap}
+	}
+	\label{tabel_FedSwapNotations}
 	\begin{tabular}{cr}
 		\hline
 		متغیر & توضیحات \\
 		\hline
-		$w$ & وزن‌های شبکه‌عصبی \\
-		$T$ & تعداد گام‌ها \\
-		$K$ & تعداد مشتریان \\
-		$C$ & ضریب کنترلی برای زیرمجموعه‌ای از مشتریان \\
-		$n$ & تعداد داده‌های آموزشی \\
-		$\mathcal{P}_k$ & مجموعه داده‌های متعلق به مشتری $k$ \\
-		$B$ & اندازه دسته محلی \\
-		$E$ & تعداد مراحل آموزش محلی \\
-		$\eta$ & نرخ یادگیری \\
-		
-%		\tnote{*}
-		$C$ & Number of clients \\
-		$B$ & Bandwidth \\
-		$T$ & Total steps \\
-		$w, w_t$ & Weights \\
-		$D, D_i$ & Training data \\
-		$n, n_c$ & Number of training data \\
-		$\eta$ & Learning rate \\
-		$s$ & Size of model \\
-		$k_1$ & Steps between each FedSwap \\
-		$k_2$ & Number of FedSwap between each FedAvg \\
+		$h_1$ & تعداد گام‌ها بین هر
+			\lr{FedSwap} \\
+		$h_2$ & تعداد
+			\lr{FedSwap}
+				بین هر
+			\lr{FedAvg} \\
 		\hline
 	\end{tabular}
-%	\begin{LTR}
-%		\begin{tablenotes}
-%			\item[*] minibatch
-%		\end{tablenotes}
-%	\end{LTR}
-%\end{threeparttable}
 \end{table}
 
 
@@ -101,34 +81,34 @@
 	\begin{latin}
 	Initialize all clients model with weight $w_0$\;
 	\For{$t = 1, 2, \ldots, T$}{
-		\For{each client $c = 1, 2, \ldots, C$
+		\For{each client $k = 1, 2, \ldots, K$
 			\textbf{in parallel}}{
-			$w_t^c = w_{t-1}^c - \eta \nabla F(w_{t-1}^c)$\;
+			$w_t^k = w_{t-1}^k - \eta \nabla F(w_{t-1}^k)$\;
 		}
-		\If{$t|k_1 = 0$ \quad and \quad $t|k_1k_2 \neq 0$}{
-			\For{each client $c = 1, 2, \ldots, C$}{
-				$w_t^c \gets \texttt{FedSwap}(c, \{w_t^c\}_{c \in C})$\;
+		\If{$t|h_1 = 0$ \quad and \quad $t|h_1h_2 \neq 0$}{
+			\For{each client $k = 1, 2, \ldots, K$}{
+				$w_t^k \gets \texttt{FedSwap}(k, \{w_t^k\}_{k \in K})$\;
 			}
 		}
-		\If{$t|k_1k_2 = 0$}{
-			$w_t \gets \texttt{FedAvg}(\{w_t^c\}_{c \in C})$\;
-			\For{each client $c = 1, 2, \ldots, C$
+		\If{$t|h_1h_2 = 0$}{
+			$w_t \gets \texttt{FedAvg}(\{w_t^k\}_{k \in K})$\;
+			\For{each client $k = 1, 2, \ldots, K$
 				\textbf{in parallel}}{
-				$w_t^c \gets w_t$\;
+				$w_t^k \gets w_t$\;
 			}
 		}
 	}
 	\SetKwFunction{FedSwap}{FedSwap}
 	\SetKwFunction{FedAvg}{FedAvg}
 	\SetKwProg{Fn}{Function}{:}{end}
-	\Fn{\FedSwap{$c, \{w_t^c\}_{c \in C}$}}{
-		$r$ \space represent a random client in \space $C$\;
+	\Fn{\FedSwap{$k, \{w_t^k\}_{k \in K}$}}{
+		$r$ \space represent a random client in \space $K$\;
 		$w_t \gets w_t^r$\;
-		$w_t^r \gets w_t^c$\;
+		$w_t^r \gets w_t^k$\;
 		\KwRet $w_t$\;
 	}
-	\Fn{\FedAvg{$\{w_t^c\}_{c \in C}$}}{
-		$w_t \gets \sum_{c=1}^C \frac{n_c}{n} w_t^c$\;
+	\Fn{\FedAvg{$\{w_t^k\}_{k \in K}$}}{
+		$w_t \gets \sum_{k=1}^K \frac{n_k}{n} w_t^k$\;
 		\KwRet $w_t$\;
 	}
 	\end{latin}
