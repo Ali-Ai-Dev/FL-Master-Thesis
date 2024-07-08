@@ -417,7 +417,9 @@ $h_2$
 برای اطمینان از اینکه ترکیب‌های جدید داده‌ها مستقل و متفاوت از هم باشند، شرط‌های زیر باید رعایت شوند:
 \begin{equation}
 	\begin{array}{ll}
-		\forall_{j<i} & X \mathbf{w}_X^i \perp X \mathbf{w}_X^j \\
+		\forall_{j<i} & X \mathbf{w}_X^i \perp X \mathbf{w}_X^j
+		\\
+		\\
 		\forall_{j<i} & Y \mathbf{w}_Y^i \perp Y \mathbf{w}_Y^j
 	\end{array}
 \end{equation}
@@ -603,18 +605,18 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 
 
 
-\subsection{sum\_diff}
+%\subsection{sum\_diff}
+%در صورتی که فقط لایه‌های مشابه را با هم مقایسه نماییم به عبارتی لایه اول از شبکه عصبی اول با لایه اول از شبکه عصبی دوم مقایسه کنیم. در این حالت چون ابعاد با هم برابر هستند برای مثال هر دو به صورت \( n \times p_1 \) خواهند بود. می‌توان از رابطه ساده زیر برای مقایسه استفاده نمود.
+%\begin{equation}
+%	s(X, Y) = \sum_{i=1}^n \sum_{j=1}^{p_1} Z_{ij}
+%	\quad \text { where } \quad
+%	Z = |X-Y|
+%\end{equation}
+
+
+\section{نحوه پیداکردن مشابهت، لایه به لایه}
 تست
 
-\subsection{CCA}
-تست
-
-\subsection{dCKA}
-تست
-
-
-\subsection{نحوه پیداکردن مشابهت، لایه به لایه}
-تست
 
 \section{نحوه جستجوی کاربر نهایی جهت جابجایی مدل}
 تست
