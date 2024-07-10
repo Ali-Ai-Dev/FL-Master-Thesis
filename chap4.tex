@@ -648,7 +648,6 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 پس از انجام این تعویض، فرایند مشابهی برای کاربران باقی‌مانده تکرار می‌شود. ابتدا یک کاربر دیگر به صورت تصادفی انتخاب می‌شود و دقیقا همان روند بالا برای آن تکرار خواهد شد، با توجه به اینکه در این فرایند، دو کاربری که مدل‌های آن‌ها در مرحله قبل تعویض شده بودند، در مقایسه‌های بعدی شرکت نمی‌کنند.
 
 
-
 \begin{LTR}
 	\SetAlgoNlRelativeSize{-1}
 	\begin{algorithm}[t]
@@ -664,27 +663,27 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 			\SetKwFunction{GreedySwapping}{GreedySwapping}
 			\SetKwProg{Fn}{Function}{:}{end}
 			\Fn{\GreedySwapping{}}{
-				$LstRemainSwap$ = copy of $ClientSelects$\;
-				$NumSwaps$ = (length of $ClientSelects$ // 2) * $SwapPercentage$\;
+				$LRS$ = copy of $U_t$\;
+				$NS$ = (length of $U_t$ // 2) * $SP$\;
 				\BlankLine
 				
-				\For{$NumSwaps$ times}{
-					$RandomIndex$ = random integer between $0$ and length of $LstRemainSwap$\;
-					$SwapClientBase = LstRemainSwap[RandomIndex]$\;
-					remove $SwapClientBase$ from $LstRemainSwap$\;
+				\For{$NS$ times}{
+					$RandomIndex$ = random integer between $0$ and length of $LRS$\;
+					$SCB = LRS[RandomIndex]$\;
+					remove $SCB$ from $LRS$\;
 					
 					\BlankLine
 					Initialize $LstSimilarity$ as an empty list\;
-					\For{each $RemainClient$ in $LstRemainSwap$}{
-						$Similarity = \texttt{ModelSimilarity} (ClientWeights[SwapClientBase], ClientWeights[RemainClient])$\;
-						Append $Similarity$ to $LstSimilarity$\;
+					\For{each $RC \in LRS$}{
+						$Sim = \texttt{ModelSimilarity} (w^{SCB}, w^{RC})$\;
+						Append $Sim$ to $LstSimilarity$\;
 					}
 					$MinSimilarityIndex$ = index of the minimum value in $LstSimilarity$\;
-					$SwapClientDest = LstRemainSwap[MinSimilarityIndex]$\;
-					remove $SwapClientDest$ from $LstRemainSwap$\;
+					$SCD = LRS[MinSimilarityIndex]$\;
+					remove $SCD$ from $LRS$\;
 					\BlankLine
 					
-					Call $\texttt{FedSwap}(SwapClientBase, SwapClientDest)$\;
+					$\texttt{FedSwap}(SCB, SCD)$\;
 				}
 			}
 		\end{latin}
@@ -692,7 +691,25 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 \end{LTR}
 
 
+\begin{table}[h]
+	\centering
+	\caption{نمادهای الگوریتم تعویض حریصانه}
+	\label{tabel_GreedySwappingNotations}
+	\begin{tabular}{cr}
+		\hline
+		متغیر & توضیحات \\
+		\hline
+		$LRS \, (LstRemainSwap)$ & لیست باقی‌مانده تعویض \\
+		$NS \, (NumSwaps)$ & تعداد تعویض‌ها \\
+		$SP \, (SwapPercentage)$ & ضریب کنترلی برای تعداد تعویض‌ها \\
+		$SCB \, (SwapClientBase)$ & کاربر مبدا تعویض \\
+		$RC \, (RemainClient)$ & کاربر باقی‌مانده \\
+		$SCD \, (SwapClientDest)$ & کاربر مقصد تعویض \\
+	\end{tabular}
+\end{table}
 
+
+از نظر میزان حافظه 
 
 
 
