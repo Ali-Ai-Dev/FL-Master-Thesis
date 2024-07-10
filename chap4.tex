@@ -639,10 +639,61 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 نکته مهمی که باید مد نظر قرار داد این است که فرآیند بررسی شباهت بین مدل‌های شبکه عصبی ممکن است زمان‌بر باشد. بنابراین، برای تصمیم‌گیری سریع درباره جابجایی مدل‌ها، باید از روش‌های مؤثری استفاده شود. در ادامه، دو روش برای تعیین کاربران نهایی جهت جابجایی مدل‌ها معرفی می‌شود.
 
 
-\subsection{روش حریصانه}
+\subsection{
+	روش تعویض حریصانه%
+	\LTRfootnote{Greedy Swapping}
+}
 در روش حریصانه، از بین تمام کاربران موجود، یک کاربر به صورت تصادفی انتخاب می‌شود. سپس مدل شبکه عصبی این کاربر با مدل‌های تمامی کاربران دیگر مقایسه می‌شود تا میزان شباهت آن‌ها سنجیده شود. در این مرحله، کاربری که مدل شبکه عصبی او کمترین شباهت را با مدل کاربر انتخاب‌ شده دارد، به عنوان کاربر مقصد برای تعویض مدل انتخاب می‌شود. پس از این انتخاب، سرور مدل‌های این دو کاربر را با یکدیگر جابجا می‌کند و در نهایت این دو کاربر را از لیست انتخاب حذف خواهد کرد.
 
 پس از انجام این تعویض، فرایند مشابهی برای کاربران باقی‌مانده تکرار می‌شود. ابتدا یک کاربر دیگر به صورت تصادفی انتخاب می‌شود و دقیقا همان روند بالا برای آن تکرار خواهد شد، با توجه به اینکه در این فرایند، دو کاربری که مدل‌های آن‌ها در مرحله قبل تعویض شده بودند، در مقایسه‌های بعدی شرکت نمی‌کنند.
+
+
+
+\begin{LTR}
+	\SetAlgoNlRelativeSize{-1}
+	\begin{algorithm}[t]
+		\begin{RTL}
+			\caption{%
+				تعویض حریصانه
+				\lr{(Greedy Swapping)}
+			}
+			\label{algo_greedy_swapping}
+		\end{RTL}
+		
+		\begin{latin}
+			\SetKwFunction{GreedySwapping}{GreedySwapping}
+			\SetKwProg{Fn}{Function}{:}{end}
+			\Fn{\GreedySwapping{}}{
+				$LstRemainSwap$ = copy of $ClientSelects$\;
+				$NumSwaps$ = (length of $ClientSelects$ // 2) * $SwapPercentage$\;
+				\BlankLine
+				
+				\For{$NumSwaps$ times}{
+					$RandomIndex$ = random integer between $0$ and length of $LstRemainSwap$\;
+					$SwapClientBase = LstRemainSwap[RandomIndex]$\;
+					remove $SwapClientBase$ from $LstRemainSwap$\;
+					
+					\BlankLine
+					Initialize $LstSimilarity$ as an empty list\;
+					\For{each $RemainClient$ in $LstRemainSwap$}{
+						$Similarity = \texttt{ModelSimilarity} (ClientWeights[SwapClientBase], ClientWeights[RemainClient])$\;
+						Append $Similarity$ to $LstSimilarity$\;
+					}
+					$MinSimilarityIndex$ = index of the minimum value in $LstSimilarity$\;
+					$SwapClientDest = LstRemainSwap[MinSimilarityIndex]$\;
+					remove $SwapClientDest$ from $LstRemainSwap$\;
+					\BlankLine
+					
+					Call $\texttt{FedSwap}(SwapClientBase, SwapClientDest)$\;
+				}
+			}
+		\end{latin}
+	\end{algorithm}
+\end{LTR}
+
+
+
+
 
 
 
