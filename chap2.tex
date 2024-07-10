@@ -352,8 +352,8 @@ $u_k=E \frac{n_k}{B}$
 		initialize $w_0$\;
 		\For{each round $t = 1, 2, \ldots, T$}{
 			$m \gets \max(C \cdot K, 1)$\;
-			$S_t \gets$ (random set of $m$ clients)\;
-			\For{each client $k \in S_t$
+			$U_t \gets$ (random set of $m$ clients)\;
+			\For{each client $k \in U_t$
 				\textbf{in parallel}}{
 				$w_{t+1}^k \gets \texttt{ClientUpdate}(k, w_t)$\;
 			}
@@ -394,7 +394,7 @@ $u_k=E \frac{n_k}{B}$
 		$K$ & تعداد مشتریان \\
 		$C$ & ضریب کنترلی برای زیرمجموعه‌ای از مشتریان \\
 		$m$ & زیر مجموعه‌ای از مشتریان \\
-		$S_t$ & مجموعه‌ای نامرتب از $m$ در گام $t$ \\
+		$U_t$ & مجموعه‌ای نامرتب از $m$ در گام $t$ \\
 		$n$ & تعداد داده‌های آموزشی \\
 		$\mathcal{P}_k$ & مجموعه داده‌های متعلق به مشتری $k$ \\
 		$B$ & اندازه دسته محلی \\
