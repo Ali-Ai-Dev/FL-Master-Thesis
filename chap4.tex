@@ -800,7 +800,7 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 
 \subsection{
 	روش تعویض حداقل مشابهت%
-	\LTRfootnote{Similarity Minimum Swapping}
+	\LTRfootnote{Minimum Similarity Swapping}
 }
 در این روش، برای اینکه حداقل شباهت ممکن بین تمامی مدل‌های شبکه عصبی به دست آید، لازم است تمامی مدل‌ها با یکدیگر مقایسه شوند و دو مدلی که کمترین شباهت را دارند با هم تعویض شوند. به عنوان مثال، اگر \( n \) مدل وجود داشته باشد، باید یک ماتریس \( n \times n \) برای بررسی میزان شباهت‌ها ایجاد شود. در این ماتریس، شباهت مدل 1 با مدل 2 برابر با شباهت مدل 2 با مدل 1 در نظر گرفته می‌شود. همچنین به دلیل اینکه مقایسه یک مدل با خودش بی‌معنی است، ماتریس نهایی به شکل یک ماتریس مثلثی%
 \LTRfootnote{Triangular Matrix}
@@ -820,72 +820,74 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 برای درک بهتر، فرض کنید کمترین مقدار شباهت در سطر سوم و ستون ششم ماتریس قرار دارد. در این حالت، مدل‌های سوم و ششم باید با یکدیگر تعویض شوند. پس از این تعویض، لازم است که تمامی مقادیر در سطرهای سوم و ششم و همچنین ستون‌های سوم و ششم به بی‌نهایت تغییر کنند تا این دو مدل دیگر مورد بررسی قرار نگیرند. به این ترتیب، در دور بعدی، کوچک‌ترین مقدار شباهت از ماتریس انتخاب می‌شود و چون مقادیر مربوط به مدل‌های سوم و ششم به بی‌نهایت تغییر کرده‌اند، دیگر در این مرحله حضور نخواهند داشت و انتخاب نمی‌شوند.
 
 
-%
-%
-%\begin{LTR}
-%	\SetAlgoNlRelativeSize{-1}
-%	\begin{algorithm}[t]
-%		\begin{RTL}
-%			\caption{%
-%				تعویض کمترین مشابهت
-%				\lr{(Minimum Similarity Swapping)}
-%			}
-%			\label{algo_minimum_similarity_swapping}
-%		\end{RTL}
-%		
-%		\begin{latin}
-%			\SetKwFunction{MinSimilaritySwap}{MinSimilaritySwap}
-%			\SetKwProg{Fn}{Function}{:}{end}
-%			\Fn{\MinSimilaritySwap{}}{
-%				Initialize sim_sparse_matrix with empty arrays for "row", "col", and "val"
-%				
-%				
-%				$LRS$ = copy of $U_t$\;
-%				$NS$ = (length of $U_t$ // 2) * $SP$\;
-%				\BlankLine
-%				
-%				\For{$NS$ times}{
-%					$RandomIndex$ = random integer between $0$ and length of $LRS$\;
-%					$SCB = LRS[RandomIndex]$\;
-%					remove $SCB$ from $LRS$\;
-%					
-%					\BlankLine
-%					Initialize $LstSimilarity$ as an empty list\;
-%					\For{each $RC \in LRS$}{
-%						$Sim = \texttt{ModelSimilarity} (w^{SCB}, w^{RC})$\;
-%						Append $Sim$ to $LstSimilarity$\;
-%					}
-%					$MinSimilarityIndex$ = index of the minimum value in $LstSimilarity$\;
-%					$SCD = LRS[MinSimilarityIndex]$\;
-%					remove $SCD$ from $LRS$\;
-%					\BlankLine
-%					
-%					$\texttt{FedSwap}(SCB, SCD)$\;
-%				}
-%			}
-%		\end{latin}
-%	\end{algorithm}
-%\end{LTR}
-%
-%
-%
-%\begin{table}[h]
-%	\centering
-%	\caption{نمادهای الگوریتم تعویض کمترین مشابهت}
-%	\label{tabel_GreedySwappingNotations}
-%	\begin{tabular}{cr}
-%		\hline
-%		متغیر & توضیحات \\
-%		\hline
-%		$LRS \, (LstRemainSwap)$ & لیست باقی‌مانده تعویض \\
-%		$NS \, (NumSwaps)$ & تعداد تعویض‌ها \\
-%		$SP \, (SwapPercentage)$ & ضریب کنترلی برای تعداد تعویض‌ها \\
-%		$SCB \, (SwapClientBase)$ & کاربر مبدا تعویض \\
-%		$RC \, (RemainClient)$ & کاربر باقی‌مانده \\
-%		$SCD \, (SwapClientDest)$ & کاربر مقصد تعویض \\
-%	\end{tabular}
-%\end{table}
-%
+
+
+\begin{LTR}
+	\SetAlgoNlRelativeSize{-1}
+	\begin{algorithm}[t]
+		\begin{RTL}
+			\caption{%
+				تعویض حداقل مشابهت
+				\lr{(Minimum Similarity Swapping)}
+			}
+			\label{algo_minimum_similarity_swapping}
+		\end{RTL}
+		
+		\begin{latin}
+			\SetKwFunction{MinSimilaritySwapping}{MinSimilaritySwapping}
+			\SetKwProg{Fn}{Function}{:}{end}
+			\Fn{\MinSimilaritySwapping{}}{
+				Initialize $SimSparseMatrix$ with empty arrays for $row, col,$ and $val$
+				
+				
+				$LRS$ = copy of $U_t$\;
+				$NS$ = (length of $U_t$ // 2) * $SP$\;
+				\BlankLine
+				
+				\For{$NS$ times}{
+					$RandomIndex$ = random integer between $0$ and length of $LRS$\;
+					$SCB = LRS[RandomIndex]$\;
+					remove $SCB$ from $LRS$\;
+					
+					\BlankLine
+					Initialize $LstSimilarity$ as an empty list\;
+					\For{each $RC \in LRS$}{
+						$Sim = \texttt{ModelSimilarity} (w^{SCB}, w^{RC})$\;
+						Append $Sim$ to $LstSimilarity$\;
+					}
+					$MinSimilarityIndex$ = index of the minimum value in $LstSimilarity$\;
+					$SCD = LRS[MinSimilarityIndex]$\;
+					remove $SCD$ from $LRS$\;
+					\BlankLine
+					
+					$\texttt{FedSwap}(SCB, SCD)$\;
+				}
+			}
+		\end{latin}
+	\end{algorithm}
+\end{LTR}
+
+
+
+\begin{table}[h]
+	\centering
+	\caption{نمادهای الگوریتم تعویض حداقل مشابهت}
+	\label{tabel_SimilarityMinSwapNotations}
+	\begin{tabular}{cr}
+		\hline
+		متغیر & توضیحات \\
+		\hline
+		$SSM \, (SimSparseMatrix)$ & لیست باقی‌مانده تعویض \\
+		\\
+		$LRS \, (LstRemainSwap)$ & لیست باقی‌مانده تعویض \\
+		$NS \, (NumSwaps)$ & تعداد تعویض‌ها \\
+		$SP \, (SwapPercentage)$ & ضریب کنترلی برای تعداد تعویض‌ها \\
+		$SCB \, (SwapClientBase)$ & کاربر مبدا تعویض \\
+		$RC \, (RemainClient)$ & کاربر باقی‌مانده \\
+		$SCD \, (SwapClientDest)$ & کاربر مقصد تعویض \\
+	\end{tabular}
+\end{table}
+
 
 
 
