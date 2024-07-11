@@ -699,7 +699,7 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 
 \begin{table}[h]
 	\centering
-	\caption{نمادهای الگوریتم تعویض حریصانه}
+	\caption{نمادهای مختص الگوریتم تعویض حریصانه}
 	\label{tabel_GreedySwappingNotations}
 	\begin{tabular}{cr}
 		\hline
@@ -799,7 +799,7 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 
 
 \subsection{
-	روش تعویض حداقل مشابهت%
+	روش تعویض حداقل شباهت%
 	\LTRfootnote{Minimum Similarity Swapping}
 }
 در این روش، برای اینکه حداقل شباهت ممکن بین تمامی مدل‌های شبکه عصبی به دست آید، لازم است تمامی مدل‌ها با یکدیگر مقایسه شوند و دو مدلی که کمترین شباهت را دارند با هم تعویض شوند. به عنوان مثال، اگر \( n \) مدل وجود داشته باشد، باید یک ماتریس \( n \times n \) برای بررسی میزان شباهت‌ها ایجاد شود. در این ماتریس، شباهت مدل 1 با مدل 2 برابر با شباهت مدل 2 با مدل 1 در نظر گرفته می‌شود. همچنین به دلیل اینکه مقایسه یک مدل با خودش بی‌معنی است، ماتریس نهایی به شکل یک ماتریس مثلثی%
@@ -827,7 +827,7 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 	\begin{algorithm}[t]
 		\begin{RTL}
 			\caption{%
-				تعویض حداقل مشابهت
+				تعویض حداقل شباهت
 				\lr{(Minimum Similarity Swapping)}
 			}
 			\label{algo_minimum_similarity_swapping}
@@ -837,30 +837,25 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 			\SetKwFunction{MinSimilaritySwapping}{MinSimilaritySwapping}
 			\SetKwProg{Fn}{Function}{:}{end}
 			\Fn{\MinSimilaritySwapping{}}{
-				Initialize $SimSparseMatrix$ with empty arrays for $row, col,$ and $val$
-				
-				
-				$LRS$ = copy of $U_t$\;
-				$NS$ = (length of $U_t$ // 2) * $SP$\;
+				Initialize $SimSparseMatrix$ with empty arrays for $row, col,$ and $val$\;
+				$L$ = length of $U_t$\;
 				\BlankLine
 				
-				\For{$NS$ times}{
-					$RandomIndex$ = random integer between $0$ and length of $LRS$\;
-					$SCB = LRS[RandomIndex]$\;
-					remove $SCB$ from $LRS$\;
-					
-					\BlankLine
-					Initialize $LstSimilarity$ as an empty list\;
-					\For{each $RC \in LRS$}{
-						$Sim = \texttt{ModelSimilarity} (w^{SCB}, w^{RC})$\;
-						Append $Sim$ to $LstSimilarity$\;
+				\For{each $row$ from $0$ to $L$}{
+					\For{each $col$ from $(row+1)$ to $L$}{
+						$Sim = \texttt{ModelSimilarity} (w^{row}, w^{col})$\;
+						Append $row, col, sim$ to $SimSparseMatrix["row", "col", "val"]$\;
 					}
-					$MinSimilarityIndex$ = index of the minimum value in $LstSimilarity$\;
-					$SCD = LRS[MinSimilarityIndex]$\;
-					remove $SCD$ from $LRS$\;
+				}
+				\BlankLine
+				
+				$NS$ = ($L$ // 2) * $SP$\;
+				\For{$NS$ times}{
+					$RI, CI$ = index of minimum value in $SimSparseMatrix["row", "col", "val"]$\;					
+					Set all values of $SimSparseMatrix["row", "col", "val"][RI, CI]$ to $\infty$\;
 					\BlankLine
 					
-					$\texttt{FedSwap}(SCB, SCD)$\;
+					$\texttt{FedSwap}(w^{RI}, w^{CI})$\;
 				}
 			}
 		\end{latin}
@@ -871,7 +866,7 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 
 \begin{table}[h]
 	\centering
-	\caption{نمادهای الگوریتم تعویض حداقل مشابهت}
+	\caption{نمادهای مختص الگوریتم تعویض حداقل شباهت}
 	\label{tabel_SimilarityMinSwapNotations}
 	\begin{tabular}{cr}
 		\hline
