@@ -864,8 +864,8 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 				$NS$ = ($L$ // 2) * $SP$\;
 				\For{$NS$ times}{
 					$MI$ = index of minimum value in $SimArray$\;
-					$RI, CI$ = find $row$ and $col$ number, based on $MI$\;					
-					Set all values of $SimArray[RI, CI]$ to $\infty$\;
+					$row, col$ = find $row$ and $col$ number, based on $MI$\;					
+					Set all values of $SimArray[row, col]$ to $\infty$\;
 					\BlankLine
 					
 					$\texttt{FedSwap}(w^{RI}, w^{CI})$\;
@@ -885,13 +885,11 @@ dK^{m_2}_{f_2} = K^{m_2}_{f_2} - \hat{\alpha}^{m_2}_{f_2} K^0
 		\hline
 		متغیر & توضیحات \\
 		\hline
-		$SimSparseMatrix$ & ماتریس خلوت مشابهت \\
-		$row$ & یک سطر از ماتریس مشابهت \\
-		$col$ & یک ستون از ماتریس مشابهت \\
-		$val$ & مقدار یک عنصر از ماتریس مشابهت \\
+		$SimArray$ & آرایه مشابهت \\
 		$L$ & طول مجموعه‌ای از مشتریان در گام $t$ \\
-		$RI \, (RowIndex)$ & شاخص سطر برای حداقل مقدار در ماتریس مشابهت \\
-		$CI \, (ColIndex)$ & شاخص ستون برای حداقل مقدار در ماتریس مشابهت \\
+		$MI \, (MinIndex)$ & شاخص مقدار کمینه در آرایه مشابهت \\
+		$row$ & شماره سطر بر اساس دید ماتریس مشابهت \\
+		$col$ & شماره ستون بر اساس دید ماتریس مشابهت
 	\end{tabular}
 \end{table}
 
