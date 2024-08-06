@@ -25,8 +25,8 @@
 ارسال می‌کنند. سرویس‌دهنده ابری با دسترسی به تمامی داده‌ها، الگوریتم‌های مورد نظر را اجرا می‌کند
 \cite{elbir2022family}.
 این روش در شکل
-\ref{centralized_decentralized_learning}%
-(الف) به تصویر کشیده شده است.
+\ref{centralized_learning}
+به تصویر کشیده شده است.
 
 
 \subsection{یادگیری غیر متمرکز}
@@ -35,40 +35,46 @@
 ، هر گره به صورت مستقل الگوریتم‌های مورد نظر را اجرا می‌کند. پس از چند مرحله اجرای کد، اطلاعات به‌روز شده را با گره‌های همسایه به اشتراک می‌گذارد. این فرآیند تا زمانی ادامه می‌یابد که تمامی گره‌ها به یک مقدار مشخص همگرا شوند
 \cite{zhou2019edge}.
 این روش در شکل
-\ref{centralized_decentralized_learning}%
-(ب) نشان داده شده است.
-
-\begin{figure}[b]
-	\centering
-	\includegraphics[scale=0.8]{images/chap1/centralized_decentralized_learning.png}%
-	\caption{%
-		(الف) یادگیری متمرکز، (ب) یادگیری غیرمتمرکز
-		\cite{zhou2019edge}%
-		.
-	}
-	\label{centralized_decentralized_learning}
-	\centering
-\end{figure}
+\ref{decentralized_learning}
+به نمایش در آمده است.
 
 
 \subsection{یادگیری توزیع شده}
 در روش یادگیری توزیع‌شده%
 \LTRfootnote{Distributed Learning}
-، یک هسته مرکزی مسئولیت مدیریت کل سیستم و تمامی داده‌ها را بر عهده دارد. با این حال، به دلیل نیاز به توان پردازشی بالا، این هسته بار پردازشی را بین گره‌های موجود تقسیم می‌کند. در این رویکرد، فرض بر این است که تمامی گره‌ها دارای توان پردازشی یکسانی هستند و داده‌ها به طور مساوی بین گره‌ها توزیع می‌شوند. این روش در شکل
+، یک هسته مرکزی مسئولیت مدیریت کل سیستم و تمامی داده‌ها را بر عهده دارد. با این حال، به دلیل نیاز به توان پردازشی بالا، این هسته بار پردازشی را بین گره‌های موجود تقسیم می‌کند. این تقسیم بار باعث می‌شود که فرآیند آموزش سریع‌تر و کارآمدتر انجام شود. همچنین، امکان استفاده همزمان از منابع مختلف برای تحلیل داده‌های بزرگ، فراهم می‌شود.
+این روش در شکل
 \ref{distributed_learning}
 نشان داده شده است.
 
 
-\begin{figure}[t]
+\begin{figure}[b]
 	\centering
-	\includegraphics[scale=0.35]{images/chap1/distributed_learning.png}%
-	\caption{%
-		یادگیری توزیع شده.
-		%		\cite{zhou2019edge}%
+	\subfigure[
+	یادگیری متمرکز
+	\cite{zhou2019edge}.
+	]{
+		\label{centralized_learning}
+		\includegraphics*[width=.31\textwidth]{images/chap1/centralized_learning.png}
 	}
-	\label{distributed_learning}
-	\centering
+	\hspace{0.5mm}
+	\subfigure[
+	یادگیری غیرمتمرکز
+	\cite{zhou2019edge}.
+	]{
+		\label{decentralized_learning}
+		\includegraphics*[width=.31\textwidth]{images/chap1/decentralized_learning.png}
+	}
+	\hspace{0.5mm}
+	\subfigure[یادگیری توزیع‌شده.]{
+		\label{distributed_learning}
+		\includegraphics*[width=.31\textwidth]{images/chap1/distributed_learning.png}
+	}
+	\caption{انواع روش‌های یادگیری}
+	\label{learning_methods}
 \end{figure}
+
+
 
 \section{یادگیری فدرال}
 سیستم‌های متمرکز تا پیش از این بیشتر نیازها را برطرف می‌کردند، اما در دنیای امروزی و با افزایش تعداد دستگاه‌های متصل، چالش‌های جدیدی مطرح شده است. هزینه‌های بالای مرتبط با انتقال حجم زیاد داده‌ها از یک جهت، و افزایش نگرانی‌ها درباره امنیت اطلاعات حساس و شخصی از جهت دیگر، محققان را به سمت استفاده از الگوریتم‌های غیرمتمرکز و توزیع‌شده در حوزه یادگیری ماشین سوق داده است. یکی از جدیدترین زیرمجموعه‌های مهم و پرکاربرد روش‌های یادگیری توزیع‌شده، یادگیری فدرال است که بسیار مورد توجه قرار گرفته است.
