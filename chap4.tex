@@ -256,7 +256,7 @@ $h_2$
 		SimFedSwap: & h_2(2Ks)
 	\end{array}
 \end{equation}
-میزان کاهش هزینه‌های ارتباطی در روش‌های \lr{FedSwap} و \lr{SimFedSwap} در مقایسه با روش \lr{FedAvg} به شکل زیر محاسبه می‌شود:
+میزان کاهش هزینه‌های ارتباطی در روش‌های \lr{FedSwap} و \lr{SimFedSwap} در مقایسه با روش \lr{FedAvg} به صورت زیر به دست می‌آید:
 \begingroup
 \addtolength{\jot}{0.5em}
 \begin{equation}
@@ -285,17 +285,22 @@ $h_2$
 
 به طور خاص، در شبیه‌سازی‌هایی که پارامترهای \(h_1\) برابر با 5 و \(h_2\) برابر با 3 در نظر گرفته شده‌اند، روش \lr{FedSwap} موفق به کاهش
 ۸۶٫۶۶
-درصدی هزینه‌های شبکه شده است. همچنین، روش \lr{SimFedSwap} توانسته این هزینه‌ها را تا ۸۰ درصد کاهش دهد.
+درصدی هزینه‌های شبکه شده است. همچنین، روش \lr{SimFedSwap} توانسته این هزینه‌ها را تا ۸۰ درصد کاهش دهد. جهت درک بهتر این ساختار و نحوه تاثیر آن بر ترافیک شبکه به شکل
+\ref{compare_swap_net_traffic}
+توجه نمایید.
+\begin{figure}[b!]
+	\centering
+	\includegraphics[scale=0.3]{images/chap4/compare_swap_net_traffic.png}%
+	\caption{%
+	تأثیر نحوه جابه‌جایی مدل‌ها بر ترافیک شبکه.
+	}
+	\label{compare_swap_net_traffic}
+	\centering
+\end{figure}
 
 
-%شکل خودمان و توضیح آن
 
-
-
-
-
-
-\subsection{اثر جابه‌جایی مدل‌ها بر حریم شخصی}
+\subsection{تاثیر جابه‌جایی مدل‌ها بر حریم شخصی}
 تست
 
 
