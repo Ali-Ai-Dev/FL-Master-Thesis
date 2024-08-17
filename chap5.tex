@@ -199,7 +199,7 @@
 
 \begin{figure}[t]
 	\centering
-	\includegraphics[scale=0.9]{images/chap5/results/mnist/acc_mid.png}%
+	\includegraphics[scale=0.9]{images/chap5/result/mnist/acc_mid.png}%
 	\caption{%
 		یک مثال از مجموعه داده
 		\lr{MNIST}.
@@ -210,17 +210,16 @@
 
 
 
-\addtolength{\tabcolsep}{-0.9mm}
+\addtolength{\tabcolsep}{-0.5mm}
 \begin{table}[h]
 	\centering
 	\caption{پارامترها}
 	\label{tabel_figMNIST}
-	\scalebox{0.945}{
+	\scalebox{0.985}{
 	\begin{tabular}{ccccccccccccc}
 		\hline
 		\specialcell{مجموعه\\داده} &
 		\specialcell{شبکه\\عصبی} &
-		\specialcell{معیار\\مشابهت} &
 		\specialcell{نحوه\\جابه‌جایی} &
 		\specialcell{تعداد\\کاربران} &
 		\specialcell{اندازه\\دسته} &
@@ -229,25 +228,25 @@
 		\specialcell{توزیع\\داده} &
 		\specialcell{نرخ\\یادگیری} &
 		\specialcell{گردش\\محلی} &
-		\specialcell{نرخ\\جابه‌جایی} &
-		\specialcell{تعداد\\جابه‌جایی}
+		\specialcell{مقدار\\\(h_1\)} &
+		\specialcell{مقدار\\\(h_2\)}
 		\\
 		\hline
 		\lr{FEMNISTw} &
-		\lr{Conv1} &
-		همه &
-		MSS &
-		\lr{10} &
-		\lr{32} &
+		\lr{Conv2} &
+		\lr{MSS} &
+		\lr{3597} &
+		\lr{64} &
+		\lr{0.5} &
 		\lr{1.0} &
-		\lr{1.0} &
-		نرمال &
+		یکنواخت &
 		\lr{0.001} &
 		\lr{1} &
 		\lr{5} &
 		\lr{3}
 		\\
-	\end{tabular}}
+	\end{tabular}
+	}
 \end{table}
 
 
