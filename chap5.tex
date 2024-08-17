@@ -147,7 +147,7 @@
 مجموعه داده
 \lr{MNIST}
 شامل 70٬000 تصویر از ارقام دست‌نویس است که به دو بخش شامل مجموعه آموزش با 60٬000 تصویر و مجموعه تست با 10٬000 تصویر تقسیم می‌شود. هر تصویر دارای ابعاد
-(28$\times$28)
+28$\times$28
 پیکسل است که به صورت خاکستری%
 \LTRfootnote{Grayscale}
 ذخیره شده‌اند و هر پیکسل دارای مقداری بین 0 (سیاه) تا 255 (سفید) است. همچنین تمامی تصاویر با یک برچسب عددی بین 0 تا 9 همراه هستند که نمایانگر رقم موجود در تصویر می‌باشد
@@ -192,6 +192,65 @@
 به طور کلی، مجموعه داده
 \lr{MNIST}
 با توجه به دلایل ذکر شده، یکی از مهم‌ترین و پراستفاده‌ترین مجموعه داده‌ها در زمینه یادگیری ماشین و بینایی کامپیوتر است. این مجموعه به محققان و دانشجویان کمک می‌کند تا مفاهیم پایه‌ای یادگیری ماشین را به خوبی درک کرده و الگوریتم‌های جدید را ارزیابی کنند.
+
+در ادامه یک نمونه از نتیجه در شکل
+\ref{figMNIST}
+به نمایش در آمده است.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[scale=0.9]{images/chap5/results/mnist/acc_mid.png}%
+	\caption{%
+		یک مثال از مجموعه داده
+		\lr{MNIST}.
+	}
+	\label{figMNIST}
+	\centering
+\end{figure}
+
+
+
+\addtolength{\tabcolsep}{-0.9mm}
+\begin{table}[h]
+	\centering
+	\caption{پارامترها}
+	\label{tabel_figMNIST}
+	\scalebox{0.945}{
+	\begin{tabular}{ccccccccccccc}
+		\hline
+		\specialcell{مجموعه\\داده} &
+		\specialcell{شبکه\\عصبی} &
+		\specialcell{معیار\\مشابهت} &
+		\specialcell{نحوه\\جابه‌جایی} &
+		\specialcell{تعداد\\کاربران} &
+		\specialcell{اندازه\\دسته} &
+		\specialcell{مشارکت\\کاربران} &
+		\specialcell{میزان\\جابه‌جایی} &
+		\specialcell{توزیع\\داده} &
+		\specialcell{نرخ\\یادگیری} &
+		\specialcell{گردش\\محلی} &
+		\specialcell{نرخ\\جابه‌جایی} &
+		\specialcell{تعداد\\جابه‌جایی}
+		\\
+		\hline
+		\lr{FEMNISTw} &
+		\lr{Conv1} &
+		همه &
+		MSS &
+		\lr{10} &
+		\lr{32} &
+		\lr{1.0} &
+		\lr{1.0} &
+		نرمال &
+		\lr{0.001} &
+		\lr{1} &
+		\lr{5} &
+		\lr{3}
+		\\
+	\end{tabular}}
+\end{table}
+
+
 
 
 \subsection{

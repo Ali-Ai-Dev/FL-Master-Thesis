@@ -5,7 +5,11 @@
 % Iman Izadi, 1395
 % Dept. of Electrical and Computer Engineering, IUT
 %*************************************************
-\usepackage[section]{placeins} % place inside subsection with '\FloatBarrier' after each section or subsection
+
+\newcommand{\specialcell}[2][c]{%
+	\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}} % break line in one cell of tabel
+
+\usepackage{placeins} % place inside subsection with '\FloatBarrier', put it before next section or subsection
 \usepackage{subfigure}
 \usepackage{extarrows} % long equal (\xlongequal)
 \setcounter{secnumdepth}{4}
