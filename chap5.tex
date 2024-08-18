@@ -387,6 +387,89 @@
 با ارائه تصاویری متنوع و چالش‌برانگیز در کلاس‌های مختلف، ابزاری قدرتمند برای آموزش و ارزیابی مدل‌های یادگیری عمیق فراهم می‌کند. این مجموعه داده نه تنها در پژوهش‌های دانشگاهی بلکه در صنعت نیز به عنوان معیاری برای ارزیابی پیشرفت‌ها در حوزه بینایی کامپیوتر استفاده می‌شود.
 
 
+
+در شکل
+\ref{result_cifar10_equal}%
+، نتایج حاصل از مقایسه روش
+\lr{SimFedSwap} 
+با سایر روش‌های مرجع به نمایش درآمده است. این مقایسه بر روی مجموعه داده
+\lr{CIFAR-10} 
+و با توزیع داده یکنواخت بین کاربران، انجام شده است. همچنین، پارامترهای به‌کاررفته در این اجرا در جدول
+\ref{tabel_parameter_cifar10} 
+به نمایش درآمده‌اند.
+
+%seed 
+
+
+
+\begin{figure}[h]
+	\centering
+	\subfigure[
+	دید کلی از نتیجه
+	\qquad\hspace{3mm}]{
+		\label{result_cifar10_equal_mid}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/cifar10/acc_mid_equal.png}
+	}
+	\hspace{0.8mm}
+	\subfigure[
+	بزرگ‌نمایی شده بخش اصلی					
+	\qquad\hspace{5mm}]{
+		\label{result_cifar10_equal_zoom}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/cifar10/acc_zoom_equal.png}
+	}
+	\caption{
+		مقایسه منحنی‌های دقت بر روی مجموعه داده
+		\lr{CIFAR-10}
+		با توزیع داده یکنواخت.
+	}
+	\label{result_cifar10_equal}
+\end{figure}
+
+
+%\addtolength{\tabcolsep}{-0.5mm}
+\begin{table}[h]
+	\centering
+	\caption{
+		پارامترهای اجرا بر روی مجموعه داده
+		\lr{CIFAR-10}
+	}
+	\label{tabel_parameter_cifar10}
+	%	\scalebox{0.985}{
+		\begin{tabular}{ccccccccccccc}
+			\hline
+			\specialcell{مجموعه\\داده} &
+			\specialcell{شبکه\\عصبی} &
+			\specialcell{نحوه\\جابه‌جایی} &
+			$K$ &
+			$B$ &
+			$C$ &
+			$SP$ &
+			$\eta$ &
+			$E$ &
+			$h_1$ &
+			$h_2$
+			\\
+			\hline
+			\lr{CIFAR-10} &
+			\lr{Conv} &
+			\lr{MSS} &
+			\lr{10} &
+			\lr{64} &
+			\lr{1.0} &
+			\lr{1.0} &
+			\lr{0.001} &
+			\lr{2} &
+			\lr{3} &
+			\lr{10}
+			\\
+		\end{tabular}
+		%	}
+\end{table}
+
+
+
+
+
 \subsection{
 	مجموعه داده
 	\lr{CINIC-10}%
