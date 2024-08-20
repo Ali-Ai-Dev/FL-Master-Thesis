@@ -892,7 +892,96 @@
 	مقایسه نتایج در رویکرد نویسندگان
 	\lr{(FEMNISTwriter)}
 }\vspace{-1mm}
-تست
+نتایج مربوط به مقایسه روش
+\lr{SimFedSwap}
+با سایر روش‌های مرجع در شکل
+\ref{result_FEMNISTwriter}
+قابل مشاهده است. این آزمایش بر روی مجموعه داده
+\lr{FEMNISTwriter}
+اجرا شده و پارامترهای به‌کاررفته در آن نیز در جدول
+\ref{tabel_parameter_FEMNISTwriter}
+ذکر شده‌اند.
+
+
+\begin{figure}[h]
+	\centering
+	\subfigure[
+	دید کلی از نتیجه
+	\qquad\hspace{3mm}]{
+		\label{result_FEMNISTwriter_base}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTwriter/acc_base.png}
+	}
+	\hspace{0.8mm}
+	\subfigure[
+	بزرگ‌نمایی شده بخش اصلی					
+	\qquad\hspace{5mm}]{
+		\label{result_FEMNISTwriter_zoom}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTwriter/acc_zoom.png}
+	}
+	\caption{
+		مقایسه منحنی‌های دقت بر روی مجموعه داده
+		\lr{FEMNISTwriter}.
+	}
+	\label{result_FEMNISTwriter}
+\end{figure}
+
+
+%\addtolength{\tabcolsep}{-0.5mm}
+\begin{table}[h]
+	\centering
+	\caption{
+		پارامترهای اجرا بر روی مجموعه داده
+		\lr{FEMNISTwriter}
+	}
+	\label{tabel_parameter_FEMNISTwriter}
+	%	\scalebox{0.985}{
+		\begin{tabular}{ccccccccccccc}
+			\hline
+			\specialcell{مجموعه\\داده} &
+			\specialcell{شبکه\\عصبی} &
+			\specialcell{نحوه\\جابه‌جایی} &
+			\specialcell{توزیع\\داده} &
+			$K$ &
+			$B$ &
+			$C$ &
+			$SP$ &
+			$\eta$ &
+			$E$ &
+			$h_1$ &
+			$h_2$
+			\\
+			\hline
+			\lr{FEMNISTwriter} &
+			\lr{Conv} &
+			\lr{MSS} &
+			یکنواخت &
+			\lr{3597} &
+			\lr{64} &
+			\lr{0.15} &
+			\lr{1.0} &
+			\lr{0.001} &
+			\lr{1} &
+			\lr{5} &
+			\lr{3}
+			\\
+		\end{tabular}
+		%	}
+\end{table}
+
+
+در شکل
+\ref{result_FEMNISTwriter}
+مشاهده می‌شود که روش‌های مبتنی بر جابه‌جایی نتایجی متفاوت از روش
+\lr{FedAvg}
+ارائه داده‌اند. اما نکته مهم، برتری قابل توجه روش‌های مبتنی بر شباهت نسبت به
+\lr{FedSwap}
+است. این اولین آزمایشی است که در آن روش‌های شباهت‌محور توانسته‌اند عملکرد بهتری را به‌طور معناداری ارائه کنند. برای اطلاعات بیشتر و تحلیل دقیق‌تر، می‌توان به منحنی‌های خطا در شکل
+\ref{app_result_FEMNISTwriter}
+پیوست، مراجعه کرد.
+
+
+%حال که نتایج مورد نظر بهتر شده‌اند موردی که مطرح می‌شود این است که آیا این برتری با توجه به چند seed مختلف نیز برقرار خواهد بود.
+
 
 
 
