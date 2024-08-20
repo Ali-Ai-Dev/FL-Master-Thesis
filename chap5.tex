@@ -895,7 +895,7 @@
 نتایج مربوط به مقایسه روش
 \lr{SimFedSwap}
 با سایر روش‌های مرجع در شکل
-\ref{result_FEMNISTwriter}
+\ref{result_FEMNISTwriter_one}
 قابل مشاهده است. این آزمایش بر روی مجموعه داده
 \lr{FEMNISTwriter}
 اجرا شده و پارامترهای به‌کاررفته در آن نیز در جدول
@@ -908,21 +908,21 @@
 	\subfigure[
 	دید کلی از نتیجه
 	\qquad\hspace{3mm}]{
-		\label{result_FEMNISTwriter_base}
-		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTwriter/acc_base.png}
+		\label{result_FEMNISTwriter_one_base}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTwriter/acc_base_one.png}
 	}
 	\hspace{0.8mm}
 	\subfigure[
 	بزرگ‌نمایی شده بخش اصلی					
 	\qquad\hspace{5mm}]{
-		\label{result_FEMNISTwriter_zoom}
-		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTwriter/acc_zoom.png}
+		\label{result_FEMNISTwriter_one_zoom}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTwriter/acc_zoom_one.png}
 	}
 	\caption{
-		مقایسه منحنی‌های دقت بر روی مجموعه داده
+		مقایسه منحنی‌های دقت در یک اجرا بر روی مجموعه داده
 		\lr{FEMNISTwriter}.
 	}
-	\label{result_FEMNISTwriter}
+	\label{result_FEMNISTwriter_one}
 \end{figure}
 
 
@@ -970,17 +970,53 @@
 
 
 در شکل
-\ref{result_FEMNISTwriter}
-مشاهده می‌شود که روش‌های مبتنی بر جابه‌جایی نتایجی متفاوت از روش
+\ref{result_FEMNISTwriter_one}
+مشاهده می‌شود که روش‌های مبتنی‌بر جابه‌جایی نتایجی متفاوت از روش
 \lr{FedAvg}
-ارائه داده‌اند. اما نکته مهم، برتری قابل توجه روش‌های مبتنی بر شباهت نسبت به
+ارائه داده‌اند. اما نکته مهم، برتری قابل توجه روش‌های مبتنی‌بر شباهت نسبت به
 \lr{FedSwap}
-است. این اولین آزمایشی است که در آن روش‌های شباهت‌محور توانسته‌اند عملکرد بهتری را به‌طور معناداری ارائه کنند. برای اطلاعات بیشتر و تحلیل دقیق‌تر، می‌توان به منحنی‌های خطا در شکل
-\ref{app_result_FEMNISTwriter}
+است. این اولین آزمایشی است که در آن روش‌های شباهت محور توانسته‌اند عملکرد بهتری را به‌طور معناداری ارائه کنند. برای اطلاعات بیشتر و تحلیل دقیق‌تر، می‌توان به منحنی‌های خطا در شکل
+\ref{app_result_FEMNISTwriter_one}
 پیوست، مراجعه کرد.
 
 
-%حال که نتایج مورد نظر بهتر شده‌اند موردی که مطرح می‌شود این است که آیا این برتری با توجه به چند seed مختلف نیز برقرار خواهد بود.
+
+با بهبود نتایج، این پرسش پیش می‌آید که آیا این برتری در شرایط استفاده از چندین
+\lr{seed}
+متفاوت، همچنان پابرجا خواهد بود. برای پاسخ به این سوال، آزمایش قبلی با پنج
+\lr{seed}
+مختلف تکرار شده و میانگین نتایج در شکل
+\ref{result_FEMNISTwriter_seed}
+نمایش داده شده‌اند. نکته قابل توجه این است که اختلاف روش مبتنی‌بر مشابهت با روش
+\lr{FedSwap}%
+، دیگر به وضوح قبلی دیده نمی‌شود و تنها بهبودی حدود یک درصد در میانگین پنج اجرا مشاهده می‌شود. برای بررسی جزئیات بیشتر، منحنی‌های خطا در شکل
+\ref{app_result_FEMNISTwriter_seed}
+پیوست ارائه شده‌اند.
+
+\begin{figure}[h]
+	\centering
+	\subfigure[
+	دید کلی از نتیجه
+	\qquad\hspace{3mm}]{
+		\label{result_FEMNISTwriter_seed_base}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTwriter/acc_base_seed.png}
+	}
+	\hspace{0.8mm}
+	\subfigure[
+	بزرگ‌نمایی شده بخش اصلی					
+	\qquad\hspace{5mm}]{
+		\label{result_FEMNISTwriter_seed_zoom}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result/FEMNISTwriter/acc_zoom_seed.png}
+	}
+	\caption{
+		مقایسه منحنی‌های دقت بر روی مجموعه داده
+		\lr{FEMNISTwriter}
+		در میانگین پنج اجرا.
+	}
+	\label{result_FEMNISTwriter_seed}
+\end{figure}
+
+
 
 
 
