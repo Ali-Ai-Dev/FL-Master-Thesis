@@ -1130,7 +1130,94 @@
 	تحلیل کاهش تعداد کاربران در هر دور و افزایش تعداد کل دورها در روش
 	\lr{\texttt{\fontspec{Times New Roman} SimFedSwap}}
 }
-تست
+در این بخش بررسی می‌شود که اگر تعداد کاربران شرکت کننده در هر دور به طور قابل توجهی کاهش یابد و در مقابل تعداد کل دورها افزایش پیدا کند، آیا مدل سراسری همچنان آموزش دیده و به همگرایی خواهد رسید.
+
+شکل
+\ref{result_lowC_highStep_cinic10}
+به تحلیل تأثیر کاهش تعداد کاربران در هر دور و افزایش تعداد دورهای کلی در الگوریتم
+\lr{SimFedSwap}
+پرداخته است. این آزمایش با استفاده از مجموعه داده
+\lr{CINIC-10}
+انجام شده و پارامترهای مورد استفاده در جدول
+\ref{tabel_parameter_lowC_highStep_cinic10}
+به نمایش درآمده‌اند.
+
+\begin{figure}[h]
+	\centering
+	\subfigure[
+	دید کلی از نتیجه
+	\qquad\hspace{3mm}]{
+		\label{result_lowC_highStep_cinic10_base}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result_lowC_highStep/cinic10/acc_base.png}
+	}
+	\hspace{0.8mm}
+	\subfigure[
+	بزرگ‌نمایی شده بخش اصلی					
+	\qquad\hspace{5mm}]{
+		\label{result_lowC_highStep_cinic10_mid}
+		\includegraphics*[width=.48\textwidth]{images/chap5/result_lowC_highStep/cinic10/acc_mid.png}
+	}
+	\caption{
+		مقایسه منحنی‌های دقت در مجموعه داده
+		\lr{CININC-10}
+		با کاهش مشارکت کاربران و افزایش  کل دورها.
+	}
+	\label{result_lowC_highStep_cinic10}
+\end{figure}
+
+
+%\addtolength{\tabcolsep}{-0.5mm}
+\begin{table}[h]
+	\centering
+	\caption{
+		پارامترهای اجرا بر روی مجموعه داده
+		\lr{CINIC-10}
+	}
+	\label{tabel_parameter_lowC_highStep_cinic10}
+	%	\scalebox{0.985}{
+		\begin{tabular}{ccccccccccccc}
+			\hline
+			\specialcell{مجموعه\\داده} &
+			\specialcell{شبکه\\عصبی} &
+			\specialcell{نحوه\\جابه‌جایی} &
+			\specialcell{توزیع\\داده} &
+			$K$ &
+			$B$ &
+			$C$ &
+			$SP$ &
+			$\eta$ &
+			$E$ &
+			$h_1$ &
+			$h_2$
+			\\
+			\hline
+			\lr{CINIC-10} &
+			\lr{Conv} &
+			\lr{MSS} &
+			نرمال &
+			\lr{200} &
+			\lr{64} &
+			\lr{0.1} &
+			\lr{1.0} &
+			\lr{0.001} &
+			\lr{1} &
+			\lr{5} &
+			\lr{3}
+			\\
+		\end{tabular}
+		%	}
+\end{table}
+
+
+بر اساس نتایج ارائه‌شده در شکل
+\ref{result_lowC_highStep_cinic10}%
+، حتی با وجود مشارکت کم کاربران در هر دور، مدل سراسری توانسته است به همگرایی برسد. اما برای این کار به بیش از 6000 دور احتیاج داشته است. همچنین، تمامی روش‌ها تقریب عملکرد مشابهی را ارائه داده‌اند.
+برای جزئیات بیشتر، منحنی‌های خطا در شکل
+\ref{app_result_lowC_highStep_cinic10}
+پیوست، مورد بررسی قرار گرفته‌اند.
+
+
+
 
 
 \section{جمع‌بندی}
@@ -1142,28 +1229,5 @@
 
 
 
-
-%
-%با توجه به نتیجه
-%\ref{mylabel1}
-%
-%
-%\begin{figure}[t]
-%	\centering
-%	\subfigure[کل شکل\qquad\hspace{3mm}]{
-%		\label{mylabel1}
-%		\includegraphics*[width=.47\textwidth]{images/chap5/cinic10_r05_acc1.png}
-%	}
-%	\hspace{1.5mm}
-%	\subfigure[بزرگ شده بخش انتهایی\qquad\hspace{5mm}]{
-%		\label{mylabel2}
-%		\includegraphics*[width=.47\textwidth]{images/chap5/cinic10_r05_acc2.png}
-%	}
-%	\caption{
-%		تست
-%		\lr{CINIC-10}
-%	}
-%	\label{mylabel}
-%\end{figure}
 
 
