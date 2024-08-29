@@ -1,0 +1,61 @@
+\addcontentsline{toc}{section}{چکیده انگلیسی}
+\thispagestyle{empty}
+
+\begin{latin}
+\begin{center}
+
+{\huge
+Improving the efficiency of federated learning algorithm for non-iid data by considering the degree of similarity between neural networks in end devices
+}
+
+\vspace{1cm}
+
+{\LARGE{Ali Bozorgzad}}
+
+\vspace{0.2cm}
+
+{\small a.bozorgzad@ec.iut.ac.ir}
+
+\vspace{0.5cm}
+
+September 00, 2024
+
+\vspace{0.5cm}
+
+Department of Electrical and Computer Engineering
+
+\vspace{0.2cm}
+
+Isfahan University of Technology, Isfahan 84156-83111, Iran
+
+\vspace{0.2cm}
+
+Degree: M.Sc. \hspace*{3cm} Language: Farsi
+
+\vspace{1cm}
+
+{\small\textbf{Supervisor: Prof. Amir Khorsandi (khorsandi@cc.iut.ac.ir)}}
+\end{center}
+~\vfill
+
+
+
+\noindent\textbf{Abstract}
+
+\begin{small}
+\baselineskip=0.6cm
+In today's world, with the rapid advancement of technology, the increasing number of devices connected to the internet, and the growing role of artificial intelligence and machine learning, the importance of effective communication and user privacy protection is more crucial than ever. This need has led to the development of distributed methods like federated learning, which is considered an advanced solution in this field. In federated learning, data remains on local devices instead of being sent to a central server, and models are trained locally. These models are then combined to create a comprehensive model. This approach not only reduces the need to transfer data but also helps better protect user privacy.
+However, federated learning faces numerous challenges, one of which is the statistical heterogeneity of data. This means that the data on different devices can be highly diverse and vary significantly from one another. Such heterogeneity can prevent local models from effectively learning all data features, resulting in a global model that does not converge well. Therefore, achieving a well-performing global model might become difficult. Thus, developing methods to handle statistical heterogeneity is highly important. Proposed methods should focus not only on solving this problem but also maintain stability in terms of computational efficiency, communication, and privacy preservation.
+One proposed solution to this challenge is the swapping of neural network models between end users during the learning process. This allows local models to encounter more diverse data, improving the convergence of the global model. In conventional methods, model swapping is done randomly. However, this study suggests that instead of using a random approach, model swapping should be performed intelligently based on similarity criteria. In this way, models with the least similarity are swapped. This approach exposes models to unfamiliar data, potentially enhancing the convergence of the global model.
+On the another way, this research examines the impact of model swapping on preserving user privacy. Traditional model swapping methods occur directly between end users. While this can reduce network overhead, it may compromise user privacy. This study proposes using a central server as an intermediary in the swapping process. This method better ensures user privacy and simplifies the implementation of various privacy techniques.
+In conclusion, this study demonstrates that intelligent neural network model swapping based on similarity criteria can accelerate the convergence of the global model. This method, showing an improvement in results by approximately 1{\footnotesize \(\%\)}, is particularly effective when there are many users.
+
+
+
+\end{small}
+
+\vspace{0.5 cm}
+
+\noindent \textbf{Key Words}: Federated Learning, Distributed Learning, Deep Learning, Neural Network Similarity, Statistical Heterogeneity
+
+\end{latin}
