@@ -44,7 +44,15 @@
 \zmakeperpage[1]{footnote}
 
 \usepackage{xepersian}									% Persian
-\settextfont{XB Zar}												% Persian font
+\settextfont[
+Path=./Fonts/,
+Extension = .ttf,
+UprightFont=*R,
+BoldFont=*Bd,
+ItalicFont=*Italic,
+BoldItalicFont=*BdIt
+]{XBZar}												% Persian font
+%\settextfont{XB Zar}												% Persian font
 
 \usepackage{bidiftnxtra}  % Remove footnote for TOC if use footnote in section or subsection and not need to '\protect'
 
