@@ -251,6 +251,7 @@
 با توجه به دلایل ذکر شده، یکی از مهم‌ترین و پراستفاده‌ترین مجموعه داده‌ها در زمینه یادگیری ماشین و بینایی کامپیوتر است. این مجموعه به محققان و دانشجویان کمک می‌کند تا مفاهیم پایه‌ای یادگیری ماشین را به خوبی درک کرده و الگوریتم‌های جدید را ارزیابی کنند.
 
 
+جهت بررسی نتایج بر روی داده‌های مختلف، باید به این نکته توجه داشت که تمامی نمودارها با استفاده از داده‌های آزمایشی ترسیم شده‌اند. این امر به دلیل ساختار یادگیری فدرال است که در آن داده‌های آموزشی در اختیار کاربران نهایی قرار دارند و استفاده سرور از این داده‌ها برای ارائه نتایج می‌تواند حریم شخصی را نقض کند. به همین دلیل، در ادامه تنها نمودارهایی که بر پایه داده‌های آزمایشی هستند ارائه می‌شوند.
 
 اکنون نتایج مربوط به مجموعه داده
 \lr{MNIST}
@@ -261,23 +262,20 @@
 با سایر روش‌های مرجع را با استفاده از مدل
 \lr{MLP}
 به تصویر می‌کشد.
-همچنین، پارامترهای به‌کاررفته در این اجرا در جدول
-\ref{tabel_parameter_mnist} 
-به نمایش درآمده‌اند.
 \begin{figure}[b!]
 	\centering
 	\subfigure[
 	دید کلی از نتیجه
 	\qquad\hspace{3mm}]{
 		\label{result_mnist_mlp_mid}
-		\includegraphics*[width=.48\textwidth]{images/chap5/result/mnist/acc_mid_mlp.png}
+		\includegraphics*[width=.441\textwidth]{images/chap5/result/mnist/acc_mid_mlp.png}
 	}
 	\hspace{0.8mm}
 	\subfigure[
 	بزرگ‌نمایی شده بخش اصلی					
 	\qquad\hspace{5mm}]{
 		\label{result_mnist_mlp_zoom}
-		\includegraphics*[width=.48\textwidth]{images/chap5/result/mnist/acc_zoom_mlp.png}
+		\includegraphics*[width=.441\textwidth]{images/chap5/result/mnist/acc_zoom_mlp.png}
 	}
 	\caption{
 		مقایسه منحنی‌های دقت در مجموعه داده
@@ -287,8 +285,11 @@
 	}
 	\label{result_mnist_mlp}
 \end{figure}
+همچنین، پارامترهای به‌کاررفته در این اجرا در جدول
+\ref{tabel_parameter_mnist} 
+به نمایش درآمده‌اند.
 %\addtolength{\tabcolsep}{-0.5mm}
-\begin{table}[t!]
+\begin{table}[b]
 	\centering
 	\caption{
 		پارامترهای اجرا در مجموعه داده
@@ -353,7 +354,7 @@
 پیوست، آمده‌اند.
 
 
-\begin{figure}[b]
+\begin{figure}[b!]
 	\centering
 	\subfigure[
 	دید کلی از نتیجه
